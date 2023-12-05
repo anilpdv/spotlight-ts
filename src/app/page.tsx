@@ -261,8 +261,8 @@ export default async function Home() {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Results-driven software engineer with 4+ years experience building
             web apps with React, Node.js and modern JavaScript frameworks.
-            Currently pursuing a Master's degree to further strengthen technical
-            abilities.
+            Currently pursuing a Master&apos;s degree to further strengthen
+            technical abilities.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

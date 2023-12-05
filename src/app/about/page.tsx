@@ -69,29 +69,32 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            I’m Anil Palli. I live in Vaasa, Finland, where I design software solutions.
+            I’m Anil Palli. I live in Vaasa, Finland, where I design software
+            solutions.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I've always enjoyed building and fixing things. Although my bachelor's degree is in mechanical engineering, I realized in college that I have a passion for coding and problem solving. I love the feeling of tackling a complex issue and finding an elegant solution.
+              <p>
+                I&apos;ve always enjoyed building and fixing things. Although my
+                bachelor&apos;s degree is in mechanical engineering, I realized
+                in college that I have a passion for coding and problem solving.
+                I love the feeling of tackling a complex issue and finding an
+                elegant solution.
+              </p>
+
+              <p>
+                I first learned React JS and fell in love with web development.
+                I&apos;m a fast learner and my friends call me &quot;speed
+                demon&quot; since I pick up new skills quickly. These days I
+                specialize in full stack JavaScript applications using
+                technologies like Node.js, React and MongoDB.
+              </p>
             </p>
 
-            <p>
-              I first learned React JS and fell in love with web development. I'm a fast learner and my friends call me "speed demon" since I pick up new skills quickly. These days I specialize in full stack JavaScript applications using technologies like Node.js, React and MongoDB.
-            </p>
-
-            <p>
-              Apart from coding, I enjoy activities like:
-            </p>
+            <p>Apart from coding, I enjoy activities like:</p>
             <ul className="activity-list">
-              <li>
-                ♟
-                Chess
-              </li>
-              <li>
-                🥾
-                Hiking outdoors
-              </li>
+              <li>♟ Chess</li>
+              <li>🥾 Hiking outdoors</li>
             </ul>
           </div>
         </div>
