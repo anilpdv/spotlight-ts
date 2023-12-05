@@ -1,0 +1,102 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+import Image from 'next/image'
+
+
+export const article = {
+
+  author: 'John Doe',
+  
+  date: '2023-03-01',
+  
+  title: 'Mastering React Hooks',
+  
+  description: 'React hooks allow function components to have access to state and other React features. Here is a comprehensive guide on how and when to use React\'s various hooks.'
+  
+}
+
+export const metadata = {
+
+  title: article.title,
+  
+  description: article.description,
+  
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+React hooks opened up function components in React to be able to use state, lifecycle methods, and other features that were previously only available in class components. Hooks provide a more direct API to these React features, often making code cleaner and easier to understand.
+
+{/* <Image src={reactbHooks} alt="React hooks diagram" /> */}
+
+Some of the most commonly used React hooks include:
+
+- **useState** - Allows adding state to function components. Similar to this.state in class components.
+- **useEffect** - Allows running code after render like componentDidMount and componentDidUpdate.
+- **useContext** - Allows consuming context in function components. Replaces static contextType.
+- **useRef** - Gives access to a mutable ref object like createRef().
+
+There are also less commonly used but still very helpful hooks like useReducer, useCallback, useMemo, and useImperativeHandle among [others](https://reactjs.org/docs/hooks-reference.html).
+
+## Why Hooks?
+
+React hooks solve a number of problems with React class components:
+
+- Eliminate the need for component inheritance and complex legacy React types like React.Component and React.PureComponent.
+- Allow sharing non-visual logic between components easily through custom hooks.
+- Simplify complex components by separating concerns into different hooks.
+
+Overall hooks make it easier to create, understand, and test React components.
+
+## Rules of Hooks
+
+There are two rules that must be followed when using hooks:
+
+1. Only call React hooks at the top level of a component. Not in loops, conditions, or nested functions.
+2. Only call React hooks from React function components or custom hooks. Not from regular JavaScript functions.
+
+Following these rules prevents hooks from working improperly and leading to bugs.
+
+## Creating Custom Hooks
+
+One great feature of hooks is the ability to create reusable custom hooks that abstract away shared logic:
+
+````jsx
+import { useState, useEffect } from 'react';
+
+function useCustomData(url) {
+
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setData(data)) 
+  }, [url]);
+
+  return data;
+}
+
+export default useCustomData;
+````
+ This custom hook handles the logic of fetching data from an API. It can now be reused across components:
+
+ ````jsx
+import useCustomData from './useCustomData';
+
+function MyComponent() {
+
+  const data = useCustomData('https://api.com/data');
+
+  return (
+    <div>
+      {data ? data.map(item => <div>{item}</div>) : 'Loading...'}
+    </div>
+  );
+}
+````
+Custom hooks are an excellent way to share code and solve cross-cutting concerns like data fetching declaratively.
+
+## Conclusion
+
+React hooks are a game changer for function components in React. They make code easier to understand, simplify complex components, reduce boilerplate, and enable code reuse across components. The rules of hooks prevent tricky bugs. And custom hooks are an awesome way to encapsulate and reuse common logic.

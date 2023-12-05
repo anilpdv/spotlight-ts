@@ -1,0 +1,68 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+
+  author: 'Sarah Doe',
+
+  date: '2023-02-16',
+  
+  title: 'Mastering the Next.js Full Route Cache Part 2: Debugging and Optimization',
+
+  description: 'The Full Route Cache is a powerful optimization in Next.js. This guide covers how to implement route caching, debug common issues, and optimize cache invalidation.'
+
+}
+
+export const metadata = {
+
+  title: article.title,
+
+  description: article.description,
+
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+## Debugging Route Cache Issues 
+
+If you suspect route cache staleness, there are a few ways to debug:
+
+**Check the version number**
+
+Pages include a version identifier that changes on redeploys. If the number is outdated, route cache is likely stale.
+
+**Toggle caching rule**
+
+Temporarily disable caching for the problem route via `dynamic` export or config. See if behavior fixes itself. 
+
+**Inspect payload** 
+
+Use React devtools to inspect if server components payload matches client. Mismatches indicate state desync.
+
+**Conditional rendering**
+
+Render an indicator based on request time vs build time to detect stale output.
+
+**Monitor revalidations**
+
+In Analytics, monitor number of revalidations triggered per route to optimize Cache-Control headers.
+
+## Individual Route Configs
+
+You can finely configure caching behavior on a per-route level:
+
+```js
+export const revalidate = 10 // Seconds 
+export const runtime = 'nodejs' // Override environment 
+export const allowMethods = ['GET'] // Allowed HTTP methods
+```
+Common use cases:
+   - Allow caching for some routes and disable for others
+   - Customize revalidation intervals per route
+   - Restrict allowed HTTP methods
+Per-route configs override app-level configs.
+
+## Conclusion
+
+Debugging and optimizing the Full Route Cache unlocks speed and scale. Configuring caching rules for specific routes also improves flexibility.
+
+With these tips, you can maximize the performance of your Next.js data fetching!

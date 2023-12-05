@@ -1,0 +1,71 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+
+export const article = {
+
+  author: 'Sarah Doe',
+
+  date: '2023-02-15',
+  
+  title: 'Mastering the Next.js Full Route Cache Part 1: How it Works',
+
+  description: 'The Full Route Cache is a powerful optimization in Next.js. This guide covers how to implement route caching, debug common issues, and optimize cache invalidation.'
+
+}
+
+export const metadata = {
+
+  title: article.title,
+
+  description: article.description,
+
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+The Full Route Cache allows Next.js to cache entire page outputs at build time instead of rendering on each request. This results in faster page loads and reduced server load.
+
+In this guide, we'll cover how route caching works, how to implement it, common caching issues, and best practices for optimizing performance.
+
+## How Route Caching Works
+
+Next.js renders routes in React on the server. The rendered output is split into two parts:
+
+1. **React Server Component Payload**: A binary representation of the rendered React components.
+2. **HTML**: Generated HTML markup from the React components. 
+
+For static routes, Next.js persists both parts in the Full Route Cache during build and revalidation.
+
+On the client, the cache is rehydrated for instant interactivity.
+
+## Implementing Route Caching
+
+By default, static routes are eligible for automatic caching at build time.
+
+To cache a dynamic route, there are two options:
+
+1. **Hybrid**: The route itself remains dynamic, but its data can be cached.
+2. **Full Static Generation**: Statically generate the route's HTML + payload by specifying static paths.
+
+## Common Caching Issues
+
+There are a few common caching pitfalls to be aware of:
+
+- **State mismatch**: Client state doesn't match server state due to outdated cache. Use revalidation to keep cache in sync.
+- **Memory limits**: Route cache consumes too much memory. Use dynamic rendering or disable caching per-route.  
+- **Slow revalidation**: Background revalidation hurts time to first byte. Use incremental static regeneration.
+
+## Optimizing Cache Invalidation 
+
+There are a few best practices that can help:
+
+- Revalidate data frequently enough to stay fast, but not too frequently to avoid waste.
+- Use granular revalidation over global revalidation.
+- Disable caching for rarely visited routes.
+- Monitor cache efficiency in analytics.
+
+## Conclusion
+
+Route-level caching unlocks speed and scale in Next.js. Understanding how caching works and optimizing cache invalidation are key to building high-performance applications.
+
+This covers the basics - now go forth and cache those routes!
